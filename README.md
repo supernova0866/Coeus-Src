@@ -30,26 +30,9 @@ npm run rebuild    # compiles better-sqlite3 native module
 npm start          # launches in dev mode
 ```
 
-## Release
-
-Push a version tag to trigger the GitHub Actions release workflow. It will:
-
-1. Zip `src/`, `renderer/`, `shared/`, `assets/`, `package.json`
-2. SHA-256 hash the zip
-3. Sign it with the RSA private key (stored in `COEUS_SIGNING_KEY` Actions secret)
-4. Verify the signature before uploading
-5. Attach `coeus-app.zip` and `manifest.json` to the GitHub Release
-
-```bash
-git tag v0.2.0
-git push origin v0.2.0
-```
-
-The Coeus installer picks this up automatically on next launch.
-
 ## IPC architecture
 
-All communication between renderer and main process goes through `preload.js` via `contextBridge`. The renderer calls `window.ff.*` — a narrow typed API — and never has direct access to Node or the filesystem. All channel names are defined in `shared/constants.js` as the `IPC` object.
+All communication between renderer and main process goes through `preload.js` via `contextBridge`. The renderer calls `window.ff.*`, a narrow typed API, and never has direct access to Node or the filesystem. All channel names are defined in `shared/constants.js` as the `IPC` object.
 
 ## Default PIN
 
