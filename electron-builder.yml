@@ -1,0 +1,55 @@
+appId: com.coeus.browser
+productName: Coeus
+copyright: Copyright © 2026 YOUR_NAME
+
+directories:
+  output: dist
+  buildResources: assets
+
+files:
+  - src/**/*
+  - renderer/**/*
+  - shared/**/*
+  - assets/**/*
+  - package.json
+  - "!data/**/*"
+  - "!**/*.md"
+  - "!**/.DS_Store"
+
+asar: true
+asarUnpack:
+  - node_modules/better-sqlite3/**/*
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: assets/icon.ico
+  requestedExecutionLevel: asInvoker
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Coeus
+  installerIcon: assets/icon.ico
+  uninstallerIcon: assets/icon.ico
+
+mac:
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+  icon: assets/icon.icns
+  category: public.app-category.productivity
+  darkModeSupport: true
+
+linux:
+  target:
+    - AppImage
+  icon: assets/icon.png
+  category: Education

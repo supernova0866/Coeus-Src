@@ -1,0 +1,50 @@
+{
+  "name": "coeus",
+  "version": "0.1.0",
+  "description": "Coeus — focus browser for self-discipline",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "rebuild": "electron-rebuild -f -w better-sqlite3",
+    "postinstall": "electron-rebuild -f -w better-sqlite3"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.4.3",
+    "jszip": "^3.10.1",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "electron-rebuild": "^3.2.9"
+  },
+  "build": {
+    "appId": "com.coeus.browser",
+    "productName": "Coeus",
+    "icon": "assets/icon",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.productivity"
+    },
+    "files": [
+      "src/**/*",
+      "renderer/**/*",
+      "shared/**/*",
+      "assets/**/*",
+      "!data/**/*"
+    ],
+    "extraResources": [],
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/better-sqlite3/**/*"
+    ]
+  }
+}
